@@ -90,7 +90,7 @@ export const createBooking = async (req: Request, res: Response) => {
 
   // Calculate totals
   const totalDuration = services.reduce((sum, s) => sum + s.duration, 0);
-  const totalPrice = services.reduce((sum, s) => sum + Number(s.price), 0);
+  const totalPrice = services.reduce((sum, s) => sum + Number(s.price || 0), 0);
 
   // Calculate end time
   const [startHour, startMin] = startTime.split(":").map(Number);
@@ -111,7 +111,7 @@ export const createBooking = async (req: Request, res: Response) => {
       serviceId: s.id,
       serviceName: s.name,
       duration: s.duration,
-      price: s.price,
+      price: s.price || 0,
     }));
 
     const appointment = await tx.appointment.create({
