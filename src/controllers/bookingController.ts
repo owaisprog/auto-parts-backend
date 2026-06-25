@@ -139,7 +139,8 @@ export const createBooking = async (req: Request, res: Response) => {
 
   // Send confirmation email
   await sendEmail({
-    to: `${customer.email}, kenelson1909p@yahoo.com.sg`,
+    // to: `${customer.email}, kenelson1909p@yahoo.com.sg`,
+    to: `${customer.email}`,
     subject: "Booking Confirmation - West Main Tire & Lube",
     html: getBookingConfirmationTemplate(
       customer.name,
